@@ -83,7 +83,7 @@ function* fetchPets() {
 }
 
 // POST PET TO DATABASE
-function postPet() {
+function* postPet(action) {
   try {
     console.log("postPet started with action:", action);
     const newPet = action.payload;
