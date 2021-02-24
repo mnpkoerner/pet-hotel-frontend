@@ -7,29 +7,29 @@ function ManageOwners() {
     const ownerData = useSelector(state => state.ownerReducer);
     const dispatch = useDispatch();
 
-    // dummy owner data
-    const dummyData = [
-        {
-            id: 1,
-            name: 'Travis',
-            numberOfPets: '2'
-        },
-        {
-            id: 2,
-            name: 'Mark',
-            numberOfPets: '13'
-        },
-        {
-            id: 3,
-            name: 'Josh',
-            numberOfPets: '1'
-        },
-        {
-            id: 4,
-            name: 'Collin',
-            numberOfPets: '2'
-        }
-    ]
+    // // dummy owner data
+    // const dummyData = [
+    //     {
+    //         id: 1,
+    //         name: 'Travis',
+    //         numberOfPets: '2'
+    //     },
+    //     {
+    //         id: 2,
+    //         name: 'Mark',
+    //         numberOfPets: '13'
+    //     },
+    //     {
+    //         id: 3,
+    //         name: 'Josh',
+    //         numberOfPets: '1'
+    //     },
+    //     {
+    //         id: 4,
+    //         name: 'Collin',
+    //         numberOfPets: '2'
+    //     }
+    // ]
 
     useEffect(() => {
         dispatch({ type: 'FETCH_OWNER_DATA' });
@@ -60,26 +60,30 @@ function ManageOwners() {
             <div>
                 <h3>Owners</h3>
                 <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of pets</th>
-                        <th>Actions</th>
-                    </tr>
-                    {dummyData.map((owner, i) => {
-                        return (
-                            <tr key={i}>
-                                <td>{owner.name}</td>
-                                <td>{owner.numberOfPets}</td>
-                                <td>
-                                    <button
-                                        onClick={() => deleteOwner(owner.id)}
-                                    >
-                                        Delete
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Number of pets</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {ownerData.map((owner, i) => {
+                            return (
+                                <tr key={i}>
+                                    <td>{owner.name}</td>
+                                    <td>{owner.numberOfPets}</td>
+                                    <td>
+                                        <button
+                                            onClick={() => deleteOwner(owner.id)}
+                                        >
+                                            Delete
                                     </button>
-                                </td>
-                            </tr>
-                        )
-                    })}
+                                    </td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
                 </table>
             </div>
 
