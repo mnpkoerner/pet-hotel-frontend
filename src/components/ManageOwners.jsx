@@ -35,17 +35,18 @@ function ManageOwners() {
         dispatch({ type: 'FETCH_OWNER_DATA' });
     }, []);
 
-    const submitNewOwner = () => {
+    const submitNewOwner = (evt) => {
+        evt.preventDefault();
         dispatch({ type: 'ADD_NEW_OWNER', payload: newOwner })
     }
 
-    const deleteOwner = () => {
-        dispatch({ type: 'ADD_NEW_OWNER', payload: newOwner })
+    const deleteOwner = (id) => {
+        dispatch({ type: 'DELETE_OWNER', payload: id })
     }
 
     return (
         <>
-            <form>
+            <form onSubmit={submitNewOwner}>
                 <h3>Add Owner</h3>
                 <input
                     type="text"
@@ -53,7 +54,7 @@ function ManageOwners() {
                     value={newOwner}
                     onChange={(event) => setNewOwner(event.target.value)}
                 />
-                <button onClick={submitNewOwner}>Submit</button>
+                <button type="submit">Submit</button>
             </form>
             <br />
             <div>
