@@ -72,7 +72,7 @@ function ManageOwners() {
                             return (
                                 <tr key={i}>
                                     <td>{owner.name}</td>
-                                    <td>{owner.numberOfPets}</td>
+                                    <td>{owner.count}</td>
                                     <td>
                                         <button
                                             onClick={() => deleteOwner(owner.id)}
