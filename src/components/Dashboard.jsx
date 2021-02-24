@@ -11,8 +11,8 @@ function Dashboard() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const ownerData = useSelector((store) => store.ownerData);
-  const pets = useSelector((store) => store.pets);
+  const ownerReducer = useSelector((store) => store.ownerReducer);
+  const petReducer = useSelector((store) => store.petReducer);
 
   const handleSubmit = () => {
     dispatch({ type: "POST_PET", payload: newPet });
@@ -81,7 +81,7 @@ function Dashboard() {
           placeholder="Pet Breed"
         />
         <select onChange={handleChange} name="owner" placeholder="Owner Name">
-          {ownerData?.map((owner) => {
+          {ownerReducer?.map((owner) => {
             <option key={owner.id} value={owner.id}>
               {owner.name}
             </option>
@@ -101,7 +101,7 @@ function Dashboard() {
           <th>Actions</th>
         </tr>
         <tr>
-          {pets?.map((pet) => {
+          {petReducer?.map((pet) => {
             <>
               <td>{pet.owner}</td>
               <td>{pet.name}</td>
