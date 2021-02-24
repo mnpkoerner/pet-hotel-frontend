@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import Dashboard from './components/Dashboard'
+import ManageOwners from './components/ManageOwners'
 
 function App() {
   return (
