@@ -37,7 +37,7 @@ function ManageOwners() {
 
     const submitNewOwner = (evt) => {
         evt.preventDefault();
-        dispatch({ type: 'ADD_NEW_OWNER', payload: newOwner })
+        dispatch({ type: 'ADD_NEW_OWNER', payload: { name: newOwner } })
     }
 
     const deleteOwner = (id) => {
