@@ -1,26 +1,43 @@
 import logo from './logo.svg';
+import {
+  HashRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 import './App.css';
 import Dashboard from './components/Dashboard'
 import ManageOwners from './components/ManageOwners'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Router>
+      <div className="App">
+        <header>
+          <h1>Pet Hotel</h1>
+          <Link to="/dashboard">
+            Dashboard
+          </Link>
+          {' '}
+          <Link to="/owners">
+            Manage Owners
+          </Link>
+        </header>
+
+        <Route
+          exact
+          path="/dashboard"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Dashboard/>
+        </Route>
+
+        <Route
+          exact
+          path="/owners"
+        >
+          <ManageOwners/>
+        </Route>
+      </div>
+    </Router>
   );
 }
 
