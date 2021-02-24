@@ -4,13 +4,28 @@ import { useSelector, useDispatch } from "react-redux";
 
 function Dashboard() {
   useEffect(() => {
-
+    dispatch({ type: "FETCH_PETS" });
+    dispatch({ type: "FETCH_OWNER_DATA" });
   }, []);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {};
+  const ownerData = useSelector((store) => store.ownerData);
+  const pets = useSelector((store) => store.pets);
+
+  const handleSubmit = () => {
+    dispatch({ type: "POST_PET", payload: newPet });
+  };
+
+  const handleDelete = (id) => {
+    dispatch({ type: "DELETE_PET", payload: id });
+  };
+
+  const handleCheckIn = (id) => {
+    console.log("id", id);
+    dispatch({ type: "UPDATE_CHECK_IN", payload: id });
+  };
 
   const handleChange = (event) => {
     console.log("event.target.value", event.target.value);
@@ -18,65 +33,89 @@ function Dashboard() {
   };
 
   const [newPet, setNewPet] = useState({
-    name: '',
-    color: '',
-    breed: '',
-    owner: ''
-  })
+    owner: "",
+    name: "",
+    breed: "",
+    color: "",
+    checkedIn: ""
+  });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Pet Hotel</h1>
-        <span>
-          <button
-            onClick={() => {
-              history.push("/dashboard");
-            }}
-          >
-            Dashboard
-          </button>
-          <button
-            onClick={() => {
-              history.push("/owners");
-            }}
-          >
-            Manage Owners
-          </button>
-        </span>
-        <br />
-        <h4>Add Pet</h4>
-        <span>
-          <input onChange={handleChange} name="name" type="text" placeholder="Pet Name"/>
-          <input onChange={handleChange} name="color" type="text" placeholder="Pet Color"/>
-          <input onChange={handleChange} name="breed" type="text" placeholder="Pet Breed"/>
-          <select onChange={handleChange} name="owner" placeholder="Owner Name"></select>
-          <button onClick={handleSubmit}>Submit</button>
-        </span>
-        <br />
-        <h4>History</h4>
-        <table>
-          <tr>
-            <th>Owner</th>
-            <th>Pet</th>
-            <th>Breed</th>
-            <th>Color</th>
-            <th>Checked In</th>
-            <th>Actions</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button>Delete</button>
-                <button>Check-In</button>
-            </td>
-          </tr>
-        </table>
-      </header>
+    <div>
+      <h1>Pet Hotel</h1>
+      <span>
+        <button
+          onClick={() => {
+            history.push("/dashboard");
+          }}
+        >
+          Dashboard
+        </button>
+        <button
+          onClick={() => {
+            history.push("/owners");
+          }}
+        >
+          Manage Owners
+        </button>
+      </span>
+      <br />
+      <h4>Add Pet</h4>
+      <span>
+        <input
+          onChange={handleChange}
+          name="name"
+          type="text"
+          placeholder="Pet Name"
+        />
+        <input
+          onChange={handleChange}
+          name="color"
+          type="text"
+          placeholder="Pet Color"
+        />
+        <input
+          onChange={handleChange}
+          name="breed"
+          type="text"
+          placeholder="Pet Breed"
+        />
+        <select onChange={handleChange} name="owner" placeholder="Owner Name">
+          {ownerData?.map((owner) => {
+            <option key={owner.id} value={owner.id}>
+              {owner.name}
+            </option>
+          })}
+        </select>
+        <button onClick={handleSubmit}>Submit</button>
+      </span>
+      <br />
+      <h4>History</h4>
+      <table>
+        <tr>
+          <th>Owner</th>
+          <th>Pet</th>
+          <th>Breed</th>
+          <th>Color</th>
+          <th>Checked In</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+          {pets?.map((pet) => {
+            <>
+              <td>{pet.owner}</td>
+              <td>{pet.name}</td>
+              <td>{pet.breed}</td>
+              <td>{pet.color}</td>
+              <td>{pet.checkedIn}</td>
+              <td>
+                <button onClick={() => handleDelete(pet.id)}>Delete</button>
+                <button onClick={() => handleCheckIn(pet.id)}>Check-In</button>
+              </td>
+            </>
+          })}
+        </tr>
+      </table>
     </div>
   );
 }
