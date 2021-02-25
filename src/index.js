@@ -59,6 +59,7 @@ function* addNewOwner(action) {
     console.log("in addNewOwner saga");
     console.log('newOwner saga', action.payload)
     yield axios.post("/owners", querystring.stringify(action.payload));
+    yield put({ type: "FETCH_OWNER_DATA" });
   } catch (error) {
     console.log("error in addNewOwner saga:", error);
   }

@@ -82,7 +82,7 @@ function Dashboard() {
           <th>Actions</th>
         </tr>
         <tr>
-          {petReducer?.map((pet) => {
+          {petReducer.map((pet) => {
             <>
               <td>{pet.owner}</td>
               <td>{pet.name}</td>
