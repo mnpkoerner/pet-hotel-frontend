@@ -37,7 +37,6 @@ function Dashboard() {
     name: "",
     breed: "",
     color: "",
-    checkedIn: ""
   });
 
   return (
