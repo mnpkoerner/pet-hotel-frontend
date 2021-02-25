@@ -81,7 +81,7 @@ function Dashboard() {
           placeholder="Pet Breed"
         />
         <select onChange={handleChange} name="owner" placeholder="Owner Name">
-          {ownerReducer?.map((owner) => {
+          {ownerReducer.map((owner) => {
             <option key={owner.id} value={owner.id}>
               {owner.name}
             </option>
