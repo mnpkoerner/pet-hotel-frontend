@@ -74,29 +74,31 @@ function Dashboard() {
       <br />
       <h4>History</h4>
       <table>
-        <tr>
-          <th>Owner</th>
-          <th>Pet</th>
-          <th>Breed</th>
-          <th>Color</th>
-          <th>Checked In</th>
-          <th>Actions</th>
-        </tr>
-        <tr>
-          {petReducer.map((pet) => {
-            <>
-              <td>{pet.owner}</td>
+        <thead>
+          <tr>
+            <th>Owner</th>
+            <th>Pet</th>
+            <th>Breed</th>
+            <th>Color</th>
+            <th>Checked In</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {petReducer.map((pet) => (
+            <tr>
+              <td>{pet.user_id}</td>
               <td>{pet.name}</td>
               <td>{pet.breed}</td>
               <td>{pet.color}</td>
-              <td>{pet.checkedIn}</td>
+              <td>{pet.checked_in}</td>
               <td>
                 <button onClick={() => handleDelete(pet.id)}>Delete</button>
                 <button onClick={() => handleCheckIn(pet.id)}>Check-In</button>
               </td>
-            </>
-          })}
-        </tr>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
