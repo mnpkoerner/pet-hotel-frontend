@@ -11,6 +11,8 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import axios from "axios";
 import { takeEvery, put } from "redux-saga/effects";
+const querystring = require('querystring');
+
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -23,6 +25,7 @@ function* rootSaga() {
   yield takeEvery("POST_PET", postPet);
   yield takeEvery("DELETE_PET", deletePet);
   yield takeEvery("UPDATE_CHECK_IN", updateCheckIn);
+  yield takeEvery("TEST", getTest)
 }
 
 //test saga
@@ -49,10 +52,13 @@ function* fetchOwnerData() {
   }
 }
 
+//made changes here, added this query stringify thingy to the payload and it worked
+//added an import at the top of the page too
 function* addNewOwner(action) {
   try {
     console.log("in addNewOwner saga");
-    yield axios.post("/owners", action.payload);
+    console.log('newOwner saga', action.payload)
+    yield axios.post("/owners", querystring.stringify(action.payload));
   } catch (error) {
     console.log("error in addNewOwner saga:", error);
   }

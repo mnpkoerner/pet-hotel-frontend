@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import {
   HashRouter as Router,
   Route,
