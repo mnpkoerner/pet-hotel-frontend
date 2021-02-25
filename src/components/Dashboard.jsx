@@ -37,29 +37,10 @@ function Dashboard() {
     name: "",
     breed: "",
     color: "",
-    checkedIn: ""
   });
 
   return (
     <div>
-      <h1>Pet Hotel</h1>
-      <span>
-        <button
-          onClick={() => {
-            history.push("/dashboard");
-          }}
-        >
-          Dashboard
-        </button>
-        <button
-          onClick={() => {
-            history.push("/owners");
-          }}
-        >
-          Manage Owners
-        </button>
-      </span>
-      <br />
       <h4>Add Pet</h4>
       <span>
         <input
