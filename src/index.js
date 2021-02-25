@@ -93,7 +93,7 @@ function* postPet(action) {
   try {
     console.log("postPet started with action:", action);
     const newPet = action.payload;
-    yield axios.post("/dashboard", newPet);
+    yield axios.post("/dashboard", querystring.stringify(newPet));
     yield put({ type: "FETCH_PETS" });
   } catch (error) {
     console.log("error in postPet function", error);
